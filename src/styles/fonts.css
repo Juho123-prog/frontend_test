@@ -1,0 +1,21 @@
+/* Global font setup for consistent rendering across systems.
+   Uses web-hosted Noto Sans KR via Google Fonts. */
+
+/* Import required weights. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+:root {
+  /* Primary app font stack */
+  --app-font: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html, body, #app {
+  font-family: var(--app-font, 'Noto Sans KR', Arial, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure form controls inherit font */
+button, input, textarea, select {
+  font-family: inherit;
+}

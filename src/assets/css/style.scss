@@ -1,0 +1,144 @@
+// 수정: 기존 @import 구문을 @use로 변경하여 SCSS 모듈화
+
+// 최상위에서 모듈로 사용 – 이미 변환된 파일들
+@use "_effects.scss" as effects;
+@use "_forms" as forms;
+@use "_scrollbars" as scrollbars;
+@use "_previews" as previews;
+
+// 추가로 컴포넌트 및 모달 관련 SCSS 파일들도 @use로 불러옵니다.
+@use "components/_action_message.scss" as action_message;
+@use "components/_breadcrumb.scss" as breadcrumb;
+@use "components/_context_menu.scss" as context_menu;
+@use "components/_explorer.scss" as explorer;
+@use "components/_drag_item.scss" as drag_item;
+@use "components/_folder_indicator.scss" as folder_indicator;
+@use "components/_folder_loader_indicator.scss" as folder_loader_indicator;
+@use "components/_item.scss" as item;
+@use "components/_item_icon.scss" as item_icon;
+@use "components/_linear_loader.scss" as linear_loader;
+@use "components/_message.scss" as message;
+@use "components/_statusbar.scss" as statusbar;
+@use "components/_tree_view.scss" as tree_view;
+@use "components/_toast.scss" as toast;
+@use "components/_toolbar.scss" as toolbar;
+@use "components/_vuefinder.scss" as vuefinder;
+
+@use "components/modals/_modal__layout.scss" as modal_layout;
+@use "components/modals/_modal_about.scss" as modal_about;
+@use "components/modals/_modal_archive.scss" as modal_archive;
+@use "components/modals/_modal_delete.scss" as modal_delete;
+@use "components/modals/_modal_header.scss" as modal_header;
+@use "components/modals/_modal_message.scss" as modal_message;
+@use "components/modals/_modal_move.scss" as modal_move;
+@use "components/modals/_modal_new_file.scss" as modal_new_file;
+@use "components/modals/_modal_new_folder.scss" as modal_new_folder;
+@use "components/modals/_modal_preview.scss" as modal_preview;
+@use "components/modals/_modal_rename.scss" as modal_rename;
+@use "components/modals/_modal_unarchive.scss" as modal_unarchive;
+@use "components/modals/_modal_upload.scss" as modal_upload;
+
+@import "overlayscrollbars/styles/overlayscrollbars.css";
+
+// Tailwind CSS 기본 명령어들
+@tailwind base;
+@tailwind components;
+
+// 유틸리티 레이어
+@layer utilities {
+  .vf-theme-dark,
+  .vf-theme-light {
+    box-sizing: border-box;
+    --os-size: 10px;
+    --os-padding-perpendicular: 2px;
+    --os-padding-axis: 2px;
+    --os-track-border-radius: 10px;
+    --os-handle-interactive-area-offset: 4px;
+    --os-handle-border-radius: 10px;
+  }
+
+  .vf-theme-dark {
+    --os-handle-bg: rgba(0, 0, 0, 0.44);
+    --os-handle-bg-hover: rgba(0, 0, 0, 0.55);
+    --os-handle-bg-active: rgba(0, 0, 0, 0.66);
+  }
+
+  .vf-theme-light {
+    --os-handle-bg: rgba(255, 255, 255, 0.44);
+    --os-handle-bg-hover: rgba(255, 255, 255, 0.55);
+    --os-handle-bg-active: rgba(255, 255, 255, 0.66);
+  }
+}
+
+// 컴포넌트 레이어
+@layer components {
+
+  .vuefinder {
+    position: relative;
+
+    * {
+      touch-action: manipulation;
+    }
+
+    .vuefinder.dark {
+      color-scheme: dark;
+    }
+
+    // 원래 사용하던 @import 구문들은 아래와 같이 주석 처리합니다.
+    // //@import "_effects.scss";
+    // //@import "_forms.scss";
+    // //@import "_scrollbars.scss";
+    // //@import "_previews.scss";
+
+    // 컴포넌트 관련 @import → @use 변환 (이미 최상위에서 불러왔으므로, 필요하다면 mixin 호출 또는 네임스페이스 사용)
+    // 기존 @import 구문들은 주석 처리합니다.
+    // //@import "components/_action_message.scss";
+    // //@import "components/_breadcrumb.scss";
+    // //@import "components/_context_menu.scss";
+    // //@import "components/_explorer.scss";
+    // //@import "components/_drag_item.scss";
+    // //@import "components/_folder_indicator.scss";
+    // //@import "components/_folder_loader_indicator.scss";
+    // //@import "components/_item.scss";
+    // //@import "components/_item_icon.scss";
+    // //@import "components/_linear_loader.scss";
+    // //@import "components/_message.scss";
+    // //@import "components/_statusbar.scss";
+    // //@import "components/_tree_view.scss";
+    // //@import "components/_toast.scss";
+    // //@import "components/_toolbar.scss";
+    // //@import "components/_vuefinder.scss";
+
+    // 모달 관련 @import → @use 변환 (최상위에서 이미 불러왔으므로 주석 처리)
+    // //@import "components/modals/_modal__layout.scss";
+    // //@import "components/modals/_modal_about.scss";
+    // //@import "components/modals/_modal_archive.scss";
+    // //@import "components/modals/_modal_delete.scss";
+    // //@import "components/modals/_modal_header.scss";
+    // //@import "components/modals/_modal_message.scss";
+    // //@import "components/modals/_modal_move.scss";
+    // //@import "components/modals/_modal_new_file.scss";
+    // //@import "components/modals/_modal_new_folder.scss";
+    // //@import "components/modals/_modal_preview.scss";
+    // //@import "components/modals/_modal_rename.scss";
+    // //@import "components/modals/_modal_unarchive.scss";
+    // //@import "components/modals/_modal_upload.scss";
+
+    // 만약 _effects.scss 등에서 정의한 mixin이나 변수를 사용해야 한다면,
+    // 예를 들어 아래와 같이 사용할 수 있습니다:
+    // @include effects.someMixin();
+  }
+
+  /*  
+    DragSelect selector (body에 추가되는)
+  */
+  .vf-explorer-selector {
+    @apply border border-slate-500 bg-slate-300 opacity-50 #{!important};
+  }
+
+  kbd {
+    @apply px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-300 dark:border-gray-500;
+  }
+}
+
+@tailwind utilities;
