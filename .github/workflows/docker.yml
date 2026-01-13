@@ -1,16 +1,15 @@
-name: Build and Push Docker Image
+name: Build & Push Docker Image (on Release)
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]   # release "Publish" 버튼 눌렀을 때만
 
 jobs:
   docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
@@ -22,9 +21,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Docker Image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: juhobag/vuefinder-frontend:latest
+          tags: |
+            juhobag/vuefinder-frontend:${{ github.event.release.tag_name }}
+            juhobag/vuefinder-frontend:latest
