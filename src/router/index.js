@@ -4,7 +4,6 @@ import A from '@/views/A.vue'
 import B from '@/views/B.vue'
 import C from '@/views/C.vue'
 import D from '@/views/D.vue'
-import E from '@/views/E.vue'
 
 
 
@@ -32,11 +31,7 @@ const routes = [
   {
     path: '/d',
     component: D,
-  },
-  {
-    path: '/e',
-    component: E,
-  },
+  }
 ]
 
 const router = createRouter({

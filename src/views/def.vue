@@ -25,9 +25,6 @@
         <button class="btn secondary" @click="goD">
           D 화면
         </button>
-        <button class="btn secondary" @click="goE">
-          E 화면
-        </button>
       </div>
     </div>
   </div>
@@ -42,7 +39,6 @@ const goA = () => router.push('/a')
 const goB = () => router.push('/b')
 const goC = () => router.push('/c')
 const goD = () => router.push('/d')
-const goE = () => router.push('/e')
 </script>
 
 <style scoped>
